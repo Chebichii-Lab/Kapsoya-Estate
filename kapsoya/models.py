@@ -17,3 +17,10 @@ class Profile(models.Model):
     neighbourhood_name = models.CharField(max_length=60,blank=False)
     location = models.CharField(max_length=60,blank=False)
     bio = models.TextField()
+
+#class Business
+class Business(models.Model):
+    business_name = models.CharField(max_length=100,blank=False)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='business_owner')
+    neighbourhood_id = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, related_name='business', blank=True, null=True)
+    business_email = models.CharField(max_length=150,blank=False)
