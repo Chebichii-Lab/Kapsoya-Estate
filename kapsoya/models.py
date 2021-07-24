@@ -41,6 +41,16 @@ class Profile(models.Model):
     location = models.CharField(max_length=60,blank=False)
     bio = models.TextField()
 
+    def __str__(self):
+        return self.user
+
+    def save_profile(self):
+        self.save()
+
+    def delete_profile(self):
+        self.delete()
+
+
 #class Business
 class Business(models.Model):
     business_name = models.CharField(max_length=100,blank=False)
