@@ -1,3 +1,4 @@
+from kapsoya.models import Neighbourhood
 from kapsoya.forms import SignupForm
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
@@ -7,8 +8,9 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def index(request):
+    all_hoods = Neighbourhood.objects.all()
 
-    return render(request,'index.html')
+    return render(request,'index.html',{'all_hoods':all_hoods})
 
 def signup(request):
     if request.method == 'POST':
@@ -23,3 +25,10 @@ def signup(request):
     else:
         form = SignupForm()
     return render(request, 'registration/registration_form.html', {'form': form})
+
+
+def neighbourhoods(request):
+    all_hoods = Neighbourhood.objects.all()
+    all_hoods = all_hoods[::-1]
+  
+    return render(request, 'index.html',{'all_hoods':all_hoods})
