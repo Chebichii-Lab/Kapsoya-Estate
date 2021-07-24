@@ -1,4 +1,4 @@
-from .models import Neighbourhood
+from .models import Neighbourhood, Profile
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -15,3 +15,8 @@ class NewNeighbourHood(forms.ModelForm):
     class Meta:
         model = Neighbourhood
         exclude = ('user','occupants_count')
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['user', 'profile_picture', 'bio']

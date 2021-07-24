@@ -1,6 +1,6 @@
 from kapsoya.models import Neighbourhood
-from kapsoya.forms import NewNeighbourHood, SignupForm
-from django.shortcuts import render
+from kapsoya.forms import NewNeighbourHood, SignupForm, UserProfileForm
+from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import login, authenticate
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
@@ -47,3 +47,21 @@ def create_neighbourhood(request):
     else:
         form = NewNeighbourHood()
     return render(request, 'new_neighbourhood.html', {'form': form})
+
+@login_required(login_url='/accounts/login/')    
+def profile(request):
+    if request.method == 'POST':
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=request.user)
+        if  profile_form.is_valid():
+            profile_form.save()
+            return redirect('home')
+    else:
+        profile_form = UserProfileForm(instance=request.user)
+    return render(request, 'profile.html',{ "profile_form": profile_form})
+
+@login_required(login_url='/accounts/login/')
+def join_neighbourhood(request, id):
+    neighbourhood = get_object_or_404(Neighbourhood, id=id)
+    request.user.profile.neighbourhood = neighbourhood
+    request.user.profile.save()
+    return redirect('index')

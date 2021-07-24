@@ -12,6 +12,8 @@ urlpatterns=[
     url('logout/',auth_views.LogoutView.as_view(), name='logout'),
     url('all-hoods/',views.neighbourhoods,name='neighbourhood'),
     url('new-hood/', views.create_neighbourhood, name='new-hood'),
+    url('profile/', views.profile, name='profile'),
+    url('join-hood/', views.join_neighbourhood, name='join-hood'),
 ]
 
 if settings.DEBUG:

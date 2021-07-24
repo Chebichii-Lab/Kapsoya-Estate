@@ -8,7 +8,7 @@ from cloudinary.models import CloudinaryField
 class Neighbourhood(models.Model):
     neighbourhood_name = models.CharField(max_length=60,blank=False)
     neighbourhood_location = models.CharField(max_length=60,blank=False)
-    occupants_count = models.IntegerField()
+    occupants_count = models.IntegerField(null=True)
     admin = models.ForeignKey(User, on_delete=models.CASCADE, related_name='neighbour')
     neighbourhood_picture = CloudinaryField('image')
 
