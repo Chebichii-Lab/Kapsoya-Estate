@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -40,6 +41,7 @@ class Profile(models.Model):
     neighbourhood_name = models.CharField(max_length=60,blank=False)
     location = models.CharField(max_length=60,blank=False)
     bio = models.TextField()
+    profile_picture = CloudinaryField('image')
 
     def __str__(self):
         return self.user
