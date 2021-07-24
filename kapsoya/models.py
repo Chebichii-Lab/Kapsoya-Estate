@@ -10,6 +10,7 @@ class Neighbourhood(models.Model):
     neighbourhood_location = models.CharField(max_length=60,blank=False)
     occupants_count = models.IntegerField()
     admin = models.ForeignKey(User, on_delete=models.CASCADE, related_name='neighbour')
+    neighbourhood_picture = CloudinaryField('image')
 
     def __str__(self):
         return f'{self.neighbourhood_name}neighbour'
