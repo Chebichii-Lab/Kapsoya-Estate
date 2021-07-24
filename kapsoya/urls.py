@@ -11,6 +11,7 @@ urlpatterns=[
     url('login/', auth_views.LoginView.as_view(), name='login'),
     url('logout/',auth_views.LogoutView.as_view(), name='logout'),
     url('all-hoods/',views.neighbourhoods,name='neighbourhood'),
+    url('new-hood/', views.create_neighbourhood, name='new-hood'),
 ]
 
 if settings.DEBUG:
