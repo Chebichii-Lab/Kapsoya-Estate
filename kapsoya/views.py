@@ -46,4 +46,4 @@ def create_neighbourhood(request):
             return redirect('index')
     else:
         form = NewNeighbourHood()
-    return render(request, 'new_neighbourhood', {'form': form})
+    return render(request, 'new_neighbourhood.html', {'form': form})
