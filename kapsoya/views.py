@@ -1,9 +1,10 @@
 from kapsoya.models import Neighbourhood
-from kapsoya.forms import SignupForm
+from kapsoya.forms import NewNeighbourHood, SignupForm
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
@@ -32,3 +33,17 @@ def neighbourhoods(request):
     all_hoods = all_hoods[::-1]
   
     return render(request, 'index.html',{'all_hoods':all_hoods})
+
+@login_required(login_url='/accounts/login/')
+def create_neighbourhood(request):
+    if request.method == 'POST':
+        form = NewNeighbourHood(request.POST, request.FILES)
+        if form.is_valid():
+            neighbourhood = form.save(commit=False)
+            neighbourhood.user = request.user
+            neighbourhood.save()
+            messages.success(request, 'A new Neighbourhood has been created! Join it and become a member')
+            return redirect('index')
+    else:
+        form = NewNeighbourHood()
+    return render(request, 'new_neighbourhood', {'form': form})
