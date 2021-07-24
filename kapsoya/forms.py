@@ -1,3 +1,4 @@
+from .models import Neighbourhood
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -9,3 +10,8 @@ class SignupForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
+
+class NewNeighbourHood(forms.ModelForm):
+    class Meta:
+        model = Neighbourhood
+        exclude = ('user',)
