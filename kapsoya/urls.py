@@ -17,6 +17,7 @@ urlpatterns=[
     path('joinhood/<id>', views.joinhood, name='joinhood'),
     path('leave_hood/<id>', views.leave_neighbourhood, name='leave-hood'),
     path('single_hood/<hood_id>', views.single_neighbourhood, name='single-hood'),
+    path('<hood_id>/post/', views.create_post, name='post'),
 ]
 
 if settings.DEBUG:

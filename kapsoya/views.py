@@ -84,10 +84,10 @@ def single_neighbourhood(request, hood_id):
     if request.method == 'POST':
         form = BusinessForm(request.POST)
         if form.is_valid():
-            b_form = form.save(commit=False)
-            b_form.neighbourhood = neighbourhood
-            b_form.user = request.user.profile
-            b_form.save()
+            business_form = form.save(commit=False)
+            business_form.neighbourhood = neighbourhood
+            business_form.user = request.user.profile
+            business_form.save()
             return redirect('single-hood', hood_id)
     else:
         form = BusinessForm()
