@@ -1,0 +1,117 @@
+{%include 'base.html'%}
+{% load bootstrap3 %}
+{% load static %}
+{% block content %}
+<body style=" background-image: url('https://cdn.pixabay.com/photo/2016/04/25/23/30/home-1353389__340.jpg');
+background-size: cover;
+background-repeat:  no-repeat;
+font-family: 'Comic Sans MS', cursive, sans-serif;">
+    <div class="container-fluid">
+        <div class="row mt">
+            <div class="col-md-6 mt-2">
+                <div class="card p-2">
+                    <h5 class="mt-2 mb-3 p-2"
+                        style="color: black; font-weight:bold;"><i
+                            class="fas fa-map-marker-alt green-text"></i> {{ neighbourhood.neighbourhood_name }}
+                        {{neighbourhood.location}}</h5>
+                    <div class="view overlay rounded z-depth-1-half p-1 bg-white">
+                        <img src="{{ neighbourhood.neighbourhood_photo.url }}" class="card-img-top" alt="{{ hood.name }}"
+                            height="300px">
+                            <a>
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-header text-center text-white">
+                            <span><strong></strong>
+                                Member{{neighbourhood.occupants_count | pluralize}}</span>
+                        </h6>
+                    </div>
+                    <div class="card-content">
+                        <h5 class="mb-3 p-2" style="font-weight:bold;">
+                            <i class="fas fa-info-circle green-text"></i>
+                            <b class="text-dark">About {{ neighbourhood.neighbourhood_name }} Neighbourhood</b>
+                        </h5>
+                        <p class="card-text">{{neighbourhood.description}}</p>
+                    </div>
+                    <div class="card-content mt-3">
+                        <h5 class="mb-3 p-2" style="font-weight:bold;">
+                            <i class="fas fa-phone-volume green-text"></i>
+                            <b class="text-dark">Contact Informations</b>
+                        </h5>
+                        <p class="card-text">
+                            <span class="text-info">Police Department: 12341234</span> &nbsp;
+                             <br>
+                             <br>
+                            <span class="text-info">Hospital Department: 56785643</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid text-center">
+        <div class="container pt-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="" class="btn btn-sm btn-success mb-4 mr-4" data-toggle="modal" data-target="#Business">New
+                        Business</a>
+                    <a class="btn btn-sm btn-success mb-4" href="{% url 'neighbourhood' %}">Exit Page</a>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <h5 class="D-block mt-3 mb-2 text-white">Available Businesses</h5>
+                            <div class="row">
+                                {% for busines in business %}
+                                <div class="col-md-4">
+                                    <div class="card mb-4">
+                                        <div class="card-body">
+                                            <h6 class="card-title text-success">{{busines.business_name}}:
+                                                <span class="text-muted"
+                                                    style="font-size: 14px;">{{busines.business_email}}</span>
+                                            </h6>
+                                            <p class="card-text text-dark">{{ busines.description }}</p>
+                                            <p class="card-text">
+                                                Owner: <small class="text-success">
+                                                    {{ busines.user.user.username | title }}</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="modal fade" id="Business" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-white" id="exampleModalCenterTitle"
+                                        style="text-align: center">
+                                        New Business
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true"> <i class="fa fa-times-circle text-success"></i></span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="" method="post">
+                                        {% csrf_token%}
+                                        {% bootstrap_form form %}
+                                        <button type="submit" class="btn btn-md btn-success">Add</button>
+                                        <button type="button" class="btn btn-md btn-outline-danger "
+                                            data-dismiss="modal" style="float:right">
+                                            Cancel
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

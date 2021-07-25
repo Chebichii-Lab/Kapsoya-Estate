@@ -16,6 +16,7 @@ urlpatterns=[
     url('profile/', views.profile, name='profile'),
     path('joinhood/<id>', views.joinhood, name='joinhood'),
     path('leave_hood/<id>', views.leave_neighbourhood, name='leave-hood'),
+    path('single_hood/<hood_id>', views.single_neighbourhood, name='single-hood'),
 ]
 
 if settings.DEBUG:

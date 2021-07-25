@@ -35,7 +35,7 @@
                 </div>
                 <div style="padding-top:1%;padding-bottom:1%">
                     {% if request.user.profile.neighbourhood == hood %}
-                    <a class="btn btn-info btn-small" href="/">View Hood</a>
+                    <a class="btn btn-info btn-small" href="{% url 'single-hood' hood.id %}">View Hood</a>
                     <a class="btn btn-warning" href="{% url 'leave-hood' hood.id %}">Leave Hood</a>
                     {% elif not request.user.profile.neighbourhood %}
                     <a class="btn btn-default" href="{% url 'joinhood' hood.id %}">Join Hood</a>

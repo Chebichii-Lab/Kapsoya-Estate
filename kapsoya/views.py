@@ -1,5 +1,5 @@
-from kapsoya.models import Neighbourhood
-from kapsoya.forms import NewNeighbourHood, SignupForm, UserProfileForm
+from kapsoya.models import Business, Neighbourhood, Post
+from kapsoya.forms import BusinessForm, NewNeighbourHood, SignupForm, UserProfileForm
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import login, authenticate
 from django.shortcuts import redirect
@@ -74,3 +74,26 @@ def leave_neighbourhood(request, id):
     messages.success(
         request, 'Success! You have succesfully exited this Neighbourhood ')
     return redirect('index')
+
+@login_required(login_url='/accounts/login/')
+def single_neighbourhood(request, hood_id):
+    neighbourhood = Neighbourhood.objects.get(id=hood_id)
+    # business = Business.objects.filter(neighbourhood=neighbourhood)
+    posts = Post.objects.filter(neighbourhood=neighbourhood)
+    # posts = posts[::-1]
+    if request.method == 'POST':
+        form = BusinessForm(request.POST)
+        if form.is_valid():
+            b_form = form.save(commit=False)
+            b_form.neighbourhood = neighbourhood
+            b_form.user = request.user.profile
+            b_form.save()
+            return redirect('single-hood', hood_id)
+    else:
+        form = BusinessForm()
+    context = {
+        'neighbourhood': neighbourhood,
+        'form': form,
+        'posts': posts
+    }
+    return render(request, 'single_hood.html', context)
