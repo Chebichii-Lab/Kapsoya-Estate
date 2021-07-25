@@ -1,5 +1,5 @@
 from kapsoya.models import Business, Neighbourhood, Post
-from kapsoya.forms import BusinessForm, NewNeighbourHood, SignupForm, UserProfileForm
+from kapsoya.forms import BusinessForm, NewNeighbourHood, PostForm, SignupForm, UserProfileForm
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import login, authenticate
 from django.shortcuts import redirect
@@ -97,3 +97,21 @@ def single_neighbourhood(request, hood_id):
         'posts': posts
     }
     return render(request, 'single_hood.html', context)
+
+
+@login_required(login_url='/accounts/login/')
+def create_post(request, hood_id):
+    neighbourhood = Neighbourhood.objects.get(id=hood_id)
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.neighbourhood = neighbourhood
+            post.user = request.user.profile
+            post.save()
+            messages.success(
+                    request, 'You have succesfully created a Post')
+            return redirect('single-hood', hood_id)
+    else:
+        form = PostForm()
+    return render(request, 'posty.html', {'form': form})
