@@ -11,7 +11,7 @@ from django.contrib import messages
 def index(request):
     all_hoods = Neighbourhood.objects.all()
 
-    return render(request,'index.html',{'all_hoods':all_hoods})
+    return render(request,'index.html',{"all_hoods":all_hoods})
 
 def signup(request):
     if request.method == 'POST':
@@ -60,8 +60,8 @@ def profile(request):
     return render(request, 'profile.html',{ "profile_form": profile_form})
 
 @login_required(login_url='/accounts/login/')
-def join_neighbourhood(request, id):
-    neighbourhood = get_object_or_404(Neighbourhood, id=id)
-    request.user.profile.neighbourhood = neighbourhood
+def joinhood(request, id):
+    hood = get_object_or_404(Neighbourhood, id=id)
+    request.user.profile.neighbourhood = hood
     request.user.profile.save()
     return redirect('index')

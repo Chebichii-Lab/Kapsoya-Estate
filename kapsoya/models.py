@@ -1,52 +1,52 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 
 #class Neighbourhood
 class Neighbourhood(models.Model):
-    neighbourhood_name = models.CharField(max_length=60,blank=False)
-    neighbourhood_location = models.CharField(max_length=60,blank=False)
-    occupants_count = models.IntegerField(null=True)
-    admin = models.ForeignKey(User, on_delete=models.CASCADE, related_name='neighbour')
-    neighbourhood_picture = CloudinaryField('image')
+    neighbourhood_name = models.CharField(max_length=200)
+    neighbourhood_location = models.CharField(max_length=200)
+    neighbourhood_description = models.TextField(max_length=500, blank=True)
+    neighbourhood_photo = CloudinaryField('photo', default='photo')
+    admin = models.ForeignKey(User, on_delete=models.CASCADE, related_name='olduriany')
 
     def __str__(self):
-        return f'{self.neighbourhood_name}neighbour'
+        return self.neighbourhood_name
 
-    def create_neighbourhood(self):
+    def save_neighbourhood(self):
         self.save()
 
     def delete_neighbourhood(self):
         self.delete()
 
     @classmethod
-    def find_neighbourhood(cls, neighbourhood_id):
-        return cls.objects.filter(id=neighbourhood_id)
+    def find_hood(cls, hood_id):
+        return cls.objects.filter(id=hood_id)
 
-    @classmethod
-    def update_occupants(cls,neighbourhood_id):
-        occupant = cls.objects.get(id=neighbourhood_id)
-        new_count = occupant.occupants_count + 1
-        cls.objects.filter(id = neighbourhood_id).update(occupants_count = new_count)
+    def update_hood(self):
+        neighbourhood_name = self.neighbourhood_name
+        self.neighbourhood_name = neighbourhood_name
 
-    def update_neighbourhood(self):
-        name = self.neighbourhood_name
-        self.neighbourhood_name = name
-
-#class User
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, default='0')
-    neighbourhood_id = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, related_name='members', blank=True, null=True)
-    neighbourhood_name = models.CharField(max_length=60,blank=False)
-    location = models.CharField(max_length=60,blank=False)
-    bio = models.TextField()
-    profile_picture = CloudinaryField('image')
-    neighbourhood_description = models.TextField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    id_number = models.IntegerField(default=0)
+    email = models.CharField(max_length=30, blank=True)
+    profile_picture = CloudinaryField('profile')
+    bio = models.TextField(max_length=500, blank=True)
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return self.user
+        return self.user.username
+
+    @receiver(post_save, sender=User)
+    def update_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+        instance.profile.save()
 
     def save_profile(self):
         self.save()
@@ -54,32 +54,5 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete()
 
-
-#class Business
-class Business(models.Model):
-    business_name = models.CharField(max_length=100,blank=False)
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='business_owner')
-    neighbourhood_id = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, related_name='business', blank=True, null=True)
-    business_email = models.CharField(max_length=150,blank=False)
-
-    def __str__(self):
-        return f'{self.business_name}business'
-
-    def save_business(self):
-        self.save()
-
-    def create_business(self):
-            self.save()
-
-    def delete_business(self):
-        self.delete()
-
-    @classmethod
-    def find_business(cls,business_id):
-        business = cls.objects.get(id = business_id)
-        return business
-
-    def update_business(self):
-        name = self.business_name
-        self.business_name = name
-
+    def update_profile(cls, id):
+        Profile.objects.get(user_id=id)
