@@ -65,3 +65,12 @@ def joinhood(request, id):
     request.user.profile.neighbourhood = hood
     request.user.profile.save()
     return redirect('index')
+
+@login_required(login_url='/accounts/login/')
+def leave_neighbourhood(request, id):
+    neighbourhood = get_object_or_404(Neighbourhood, id=id)
+    request.user.profile.neighbourhood = None
+    request.user.profile.save()
+    messages.success(
+        request, 'Success! You have succesfully exited this Neighbourhood ')
+    return redirect('index')
