@@ -43,6 +43,7 @@ class Profile(models.Model):
     location = models.CharField(max_length=60,blank=False)
     bio = models.TextField()
     profile_picture = CloudinaryField('image')
+    neighbourhood_description = models.TextField()
 
     def __str__(self):
         return self.user
