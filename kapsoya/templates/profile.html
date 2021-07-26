@@ -17,6 +17,10 @@
        
     }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+
 <div class="container" id="background3">
     <div class="col-sm-6 m-auto ">
         <div class=" content-section container" style="padding-top: 100px;">
@@ -28,16 +32,16 @@
                 </div>
                 <hr>
                 <div class="media-body">
-                    <h2 style="font-family: 'Special Elite', cursive; color: white; font-size: 40px;">{{user.username}}</h2>
-                    <p style="font-family: 'Special Elite', cursive; color: white; font-size: 25px;"> location: {{profile.profile.location}}</p>
+                    <h2 style=" color: white; font-size: 50px; font-family: 'Dancing Script', cursive;">{{user.username}}</h2>
+                    <p style=" color: white; font-size: 30px;font-family: 'Dancing Script', cursive;"> Location: {{neighbourhood.neighbourhood_location}}</p>
                     {% if request.user.profile.neighbourhood %}
-                    <p class="text-center">My Hood <a class="btn btn-sm btn-info" href="">{{ user.profile.neighbourhoodname }}</a>
+                    <p style="color: white; font-size: 35px; font-weight: bold; font-family: 'Dancing Script', cursive;">My Hood <a class="btn btn-sm btn-success" href="">{{ user.profile.neighbourhood_name }}</a>
                     </p>
                     {% endif %}
-                    <p style="font-family: 'Special Elite', cursive; color: white;">{{user.profile.bio}}</p>
+                    <p style=" color: white;">{{user.profile.bio}}</p>
                     <hr>
                     <a href="">
-                        <button class="btn btn-primary" style="font-family: 'Special Elite', cursive; font-size: 15px;">Edit Profile</button>
+                        <button class="btn btn-primary" style=" font-size: 15px; font-family: 'Dancing Script', cursive;">Edit Profile</button>
                     </a>
 
                 </div>
