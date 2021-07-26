@@ -109,14 +109,13 @@
 		<ul class="nav navbar-nav">
 			<li><a href="/" style="font-size: 20px; font-family: 'Special Elite', cursive;">Home</a></li>
 			<li><a href="logout/" style="font-size: 20px; font-family: 'Special Elite', cursive;">Logout</a></li>			
-			<li><a href="upload/" style="font-size: 20px; font-family: 'Special Elite', cursive;">New Project</a></li>
 			<li><a href="profile/" style="font-size: 20px; font-family: 'Special Elite', cursive;">Profile</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li class="navbar-form-wrapper">
-				<form class="navbar-form form-inline navbar-right" action="">
+				<form class="navbar-form form-inline navbar-right" action="{% url 'search'}" role="search">
 					<div class="input-group search-box">								
-						<input type="text" id="search" class="form-control" name="project" placeholder="Search title...">
+						<input type="text" id="search" class="form-control" name="business_name" placeholder="Search business...">
 						<span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
 					</div>
 				</form>
