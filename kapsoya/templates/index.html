@@ -13,25 +13,15 @@
                 style="background-color: rgb(250, 246, 246);box-sizing: border-box; margin-top:2%;box-shadow: 0vh 0vh 1vh gainsboro;">
                 <div class="row" style="padding-top: 1%">
                     <div class="col-md-12">
-                        <h4 style="font-weight:600;">Name: <a href="" class="text-right"
-                                style="text-decoration: none;">{{hood.neighbourhood_name}}
-                                <img src="https://img.icons8.com/color/48/000000/circled-up-right--v1.png"
-                                    style="width:15px;height:auto" />
-                            </a></4>
+                        <h4 style="font-weight:600;">Name: <a href="" class="text-right"style="text-decoration: none;">{{hood.neighbourhood_name}}</a></4>
                     </div>
                 </div>
                 <div class="row" style="font-size:10pt;">
-                    <div class="col-md-6" style="padding-bottom: 2%;font-weight:600;"> Location:
-                        {{hood.neighbourhood_location}}
+                    <div class="col-md-6" style="padding-bottom: 2%;font-weight:600;"> Location: {{hood.neighbourhood_location}}
                     </div>
                 </div>
                 <div class="">
-                    <a href="">
-                        <img src="{{hood.neighbourhood_photo.url}}" class="img-responsive"
-                            alt="{{image.neighbourhood_name}}" style="width:100%;width:100%">
-                        <div class="overlay">
-                        </div>
-                    </a>
+                    <a href=""><img src="{{hood.neighbourhood_photo.url}}" class="img-responsive"alt="{{image.neighbourhood_name}}" style="width:100%;width:100%"></a>
                 </div>
                 <div style="padding-top:1%;padding-bottom:1%">
                     {% if request.user.profile.neighbourhood == hood %}
