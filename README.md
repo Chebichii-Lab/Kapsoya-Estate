@@ -55,6 +55,6 @@ Then once you are done, open your browser with the local host; 127.0.0.1:8000
 6. Postgresql
 
 # Live Link
-View [live](https://blog254.herokuapp.com/).
+View [live](https://kapsoya254.herokuapp.com/).
 
 
