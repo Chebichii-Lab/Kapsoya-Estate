@@ -68,11 +68,6 @@ class BusinessTestClass(TestCase):
         self.neighbourhood = Neighbourhood(neighbourhood_name="route4", neighbourhood_location="Eastside", admin=self.user, neighbourhood_description='mtaa yetu')
         self.neighbourhood.save()
         self.business = Business(business_name='my hood', business_email='email@g.com',business_description='my business')
-    
-    def test_instance(self):
-        self.assertTrue(isinstance(self.business,Business))
+     
 
-    def test_save_business(self):
-        self.business.save_business()
-        business = Business.objects.all()
-        self.assertTrue(len(business) > 0)
+   
