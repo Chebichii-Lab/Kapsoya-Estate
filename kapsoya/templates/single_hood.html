@@ -10,11 +10,11 @@
         <div class="row">
             <div>
                 <div class="col-md-10">
-                    <a href="" style="margin-left: 400px;" class="btn btn-sm btn-primary mb-4 mr-4" data-toggle="modal" data-target="#Business">NewBusiness</a>
-                        <a  style="margin-left: 300px;" class="btn btn-sm btn-primary mb-4 mr-4" href="{% url 'post' neighbourhood.id %}">New Post</a>
+                    <a href="" style="margin-left: 400px;" class="btn btn-sm btn-success mb-4 mr-4" data-toggle="modal" data-target="#Business">NEW BUSINESS</a>
+                        <a  style="margin-left: 300px;" class="btn btn-sm btn-success mb-4 mr-4" href="{% url 'post' neighbourhood.id %}">NEW POST</a>
                     <div class="card">
                         <h5 class="mt-2 mb-3 p-2" style="color: white; font-weight:bold;">{{ neighbourhood.neighbourhood_name }},{{neighbourhood.neighbourhood_location}}</h5>
-                        <h6 style="text-align: center;"><span><strong></strong>Member{{neighbourhood.occupants_count | pluralize}}</span></h6>
+                        <h6 style="text-align: center; color: white;"><span><strong></strong>Member{{neighbourhood.occupants_count | pluralize}}</span></h6>
                         <div class="view overlay"><img src="{{ neighbourhood.neighbourhood_photo.url }}" class="card-img-top"alt="{{ hood.name }}" height="300px">
                         </div>
                         <div class="card-content">

@@ -96,13 +96,13 @@ class Business(models.Model):
 
 class Post(models.Model):
     CHOICES = (
-        ('1', 'Crimes and Safety'),
+        ('1', 'Security'),
         ('2', 'Health Emergency'),
-        ('3', 'Recommendations'),
+        ('3', 'Entertainment'),
         ('4', 'Fire Breakouts'),
-        ('5', 'Lost and Found'),
+        ('5', 'Playground'),
         ('6', 'Death'),
-        ('7', 'Event'),
+        ('7', 'Gym'),
     )
     category = models.CharField(max_length=120, choices=CHOICES)
     title = models.CharField(max_length=100, null=True)
