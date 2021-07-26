@@ -3,36 +3,27 @@
 {% load static %}
 {% block content %}
 
-<body style=" background-image: url('https://cdn.pixabay.com/photo/2016/04/25/23/30/home-1353389__340.jpg');
+<body style=" background-image: url('');
 background-size: cover;
 background-repeat:  no-repeat;
 font-family: 'Comic Sans MS', cursive, sans-serif;">
     <div class="container-fluid">
-        <div class="row mt">
-            <div class="col-md-6 mt-2">
-                <div class="card p-2">
-                    <h5 class="mt-2 mb-3 p-2" style="color: black; font-weight:bold;"><i
-                            class="fas fa-map-marker-alt green-text"></i> {{ neighbourhood.neighbourhood_name }}
-                        {{neighbourhood.location}}</h5>
-                    <div class="view overlay rounded z-depth-1-half p-1 bg-white">
-                        <img src="{{ neighbourhood.neighbourhood_photo.url }}" class="card-img-top"
-                            alt="{{ hood.name }}" height="300px">
-                        <a>
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h6 class="card-header text-center text-white">
-                            <span><strong></strong>
-                                Member{{neighbourhood.occupants_count | pluralize}}</span>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="card">
+                    <h5 class="mt-2 mb-3 p-2" style="color: black; font-weight:bold;"> {{ neighbourhood.neighbourhood_name }},
+                        {{neighbourhood.neighbourhood_location}}</h5>
+                        <h6 style="text-align: center;"> <span><strong></strong>Member{{neighbourhood.occupants_count | pluralize}}</span>
                         </h6>
+                    <div class="view overlay">
+                        <img src="{{ neighbourhood.neighbourhood_photo.url }}" class="card-img-top"alt="{{ hood.name }}" height="300px">
                     </div>
                     <div class="card-content">
                         <h5 class="mb-3 p-2" style="font-weight:bold;">
                             <i class="fas fa-info-circle green-text"></i>
                             <b class="text-dark">About {{ neighbourhood.neighbourhood_name }} Neighbourhood</b>
                         </h5>
-                        <p class="card-text">{{neighbourhood.description}}</p>
+                        <p class="card-text">{{neighbourhood.neighbourhood_description}}</p>
                     </div>
                     <div class="card-content mt-3">
                         <h5 class="mb-3 p-2" style="font-weight:bold;">
@@ -46,36 +37,37 @@ font-family: 'Comic Sans MS', cursive, sans-serif;">
                             <span class="text-info">Hospital Department: 56785643</span>
                         </p>
                     </div>
-                    <div class="row">
-                        {% for busines in business %}
-                        <div class="col-md-4">
-                            <div class="card-body">
-                                <h5><b>Business name</b>:{{busines.business_name}}
-                                    <p style="font-size: 14px;"> <b>Email</b>: {{busines.business_email}}</p>
-                                </h5>
-                                <p>{{ busines.business_description }}</p>
-                                <p><b> Business Owner</b>:{{ busines.user.user.username}}</p>
+                    <div class="col-md-12">
+                        <div class="row">
+                            {% for busines in business %}
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5><b>Business name</b>:{{busines.business_name}}
+                                        <p style="font-size: 14px;"> <b>Email</b>: {{busines.business_email}}</p>
+                                    </h5>
+                                    <p>{{ busines.business_description }}</p>
+                                    <p><b> Business Owner</b>:{{ busines.user.user.username}}</p>
 
-                            </div> </b>
+                                </div> </b>
+                            </div>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
-                    </div>
-                    <div class="row">
-                        {% for post in posts %}
-                        <div class="p-2">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-9 mt-3">
-                                        <h6>{{ post.user.username | title }}&nbsp;<b
-                                        >{{ post.title }}</b> </h6>
-                                        <p>{{ post.post }}</p>
-                                        <small>>Posted{{ post.date_posted | timesince }} ago...</span></small>
+                        <div class="row">
+                            {% for post in posts %}
+                            <div class="p-2">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-9 mt-3">
+                                            <h6>{{ post.user.username | title }}&nbsp;<b>{{ post.title }}</b> </h6>
+                                            <p>{{ post.post }}</p>
+                                            <small>>Posted{{ post.date_posted | timesince }} ago...</span></small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>

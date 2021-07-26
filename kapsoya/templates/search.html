@@ -18,25 +18,21 @@
         {% for business in found_businesses %}
         <hr>
         <div class="col-md-4"></div>
-        <div class="col-md-4">
             <div class="card" style="width: 18rem;">
                 <div class="card-header">
                     Name : {{business.business_name}}
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Propreiter : {{business.user.username}}</li>
+                    <li class="list-group-item">Propreiter : {{business.user.user.username}}</li>
                     <li class="list-group-item">Contact : <a href=""> {{business.business_email}}</a></li>
                 </ul>
             </div>
             <br>
         </div>
         <hr>
-        <div class="col-md-4"></div>
         <hr>
         {% endfor %}
         <hr>
     </div>
-</div>
-</div>
 </div>
 {% endblock %}
