@@ -6,6 +6,10 @@
     background-size: cover;
     background-repeat:  no-repeat;
     font-family: 'Comic Sans MS', cursive, sans-serif;">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+
     <div class="container-fluid">
         <div class="row">
             <div>
@@ -13,29 +17,31 @@
                     <a href="" style="margin-left: 400px;" class="btn btn-sm btn-success mb-4 mr-4" data-toggle="modal" data-target="#Business">NEW BUSINESS</a>
                         <a  style="margin-left: 300px;" class="btn btn-sm btn-success mb-4 mr-4" href="{% url 'post' neighbourhood.id %}">NEW POST</a>
                     <div class="card">
-                        <h5 class="mt-2 mb-3 p-2" style="color: white; font-weight:bold;">{{ neighbourhood.neighbourhood_name }},{{neighbourhood.neighbourhood_location}}</h5>
-                        <h6 style="text-align: center; color: white;"><span><strong></strong>Member{{neighbourhood.occupants_count | pluralize}}</span></h6>
+                        <h5 class="mt-2 mb-3 p-2" style=" font-size: 30px;color: white; font-weight:bold; font-family: 'Dancing Script', cursive;">{{ neighbourhood.neighbourhood_name }},{{neighbourhood.neighbourhood_location}}</h5>
+                        <h6 style=" font-size: 30px; color: white; font-family: 'Dancing Script', cursive;"><span><strong></strong>Member{{neighbourhood.occupants_count | pluralize}}</span></h6>
                         <div class="view overlay"><img src="{{ neighbourhood.neighbourhood_photo.url }}" class="card-img-top"alt="{{ hood.name }}" height="300px">
                         </div>
                         <div class="card-content">
-                            <h5 class="mb-3 p-2" style="font-weight:bold; color: white;"><b>About {{ neighbourhood.neighbourhood_name }} Neighbourhood</b></h5>
-                            <p class="card-text" style="color: white;">{{neighbourhood.neighbourhood_description}}</p>
+                            <h5 class="mb-3 p-2" style=" font-size: 25px; font-weight:bold; color: black; font-family: 'Dancing Script', cursive;"><b>ABOUT {{ neighbourhood.neighbourhood_name }} NEIGHBOURHOOD</b></h5>
+                            <p class="card-text" style="color: white; font-size: 20px;">{{neighbourhood.neighbourhood_description}}</p>
                         </div>
                         <div class="card-content mt-3">
-                            <h5 class="mb-3 p-2" style="font-weight:bold; color: white;"><b>Contact Informations</b></h5>
-                            <p class="card-text" style="color: white;"><span>Police Department: 12341234</span> &nbsp;
+                            <h5 class="mb-3 p-2" style=" font-size: 30px; font-weight:bold; color: black; font-family: 'Dancing Script', cursive;"><b>Contact Informations</b></h5>
+                            <p class="card-text" style="color: white; font-size: 20px; font-weight: bold;"><span>Police Department: 12341234</span> &nbsp;
                                 <br>
                                 <br>
                                 <span>Hospital Department: 56785643</span>
                             </p>
                         </div>
+                        <br>
+                        <br>
                         <div class="row">
                             {% for busines in business %}
                             <div class="col-md-4">
                                 <div class="card-body">
-                                    <h5 style="color: white;"><b>Business name</b>:{{busines.business_name}}<p style="font-size: 14px;"> <b>Email</b>: {{busines.business_email}}</p></h5>
-                                    <p style="color: white;">{{ busines.business_description }}</p>
-                                    <p style="color: white;"><b> Business Owner</b>:{{ busines.user.user.username}}</p>
+                                    <h5 style="color: black; font-family: 'Dancing Script', cursive; font-size: 25px;"><b>Business name</b>:{{busines.business_name}}<p style="font-size: 18px;"> <b>Email</b>: {{busines.business_email}}</p></h5>
+                                    <p style="color: white; font-size: 15px;">{{ busines.business_description }}</p>
+                                    <p style="color: black;font-family: 'Dancing Script', cursive; font-size: 25px;"><b> Business Owner</b>:{{ busines.user.user.username}}</p>
                                 </div>
                             </div>
                             {% endfor %}
