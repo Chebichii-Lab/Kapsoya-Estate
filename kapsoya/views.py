@@ -76,10 +76,10 @@ def leave_neighbourhood(request, id):
     return redirect('index')
 
 @login_required(login_url='/accounts/login/')
-def single_neighbourhood(request, hood_id):
-    neighbourhood = Neighbourhood.objects.get(id=hood_id)
-    # business = Business.objects.filter(neighbourhood=neighbourhood)
-    posts = Post.objects.filter(neighbourhood=neighbourhood)
+def single_neighbourhood(request, id):
+    neighbourhood = Neighbourhood.objects.get(id=id)
+    business = Business.objects.filter(neighbourhood_id=id)
+    # posts = Post.objects.filter(hood=neighbourhood)
     # posts = posts[::-1]
     if request.method == 'POST':
         form = BusinessForm(request.POST)
@@ -88,13 +88,13 @@ def single_neighbourhood(request, hood_id):
             business_form.neighbourhood = neighbourhood
             business_form.user = request.user.profile
             business_form.save()
-            return redirect('single-hood', hood_id)
+            return redirect('single-hood', id)
     else:
         form = BusinessForm()
     context = {
         'neighbourhood': neighbourhood,
         'form': form,
-        'posts': posts
+        'business': business,
     }
     return render(request, 'single_hood.html', context)
 

@@ -46,6 +46,40 @@ font-family: 'Comic Sans MS', cursive, sans-serif;">
                             <span class="text-info">Hospital Department: 56785643</span>
                         </p>
                     </div>
+                    <div class="row">
+                        {% for busines in business %}
+                        <div class="col-md-4">
+                            <div class="card-body">
+                                <h5><b>Business name</b>:{{busines.name}}
+                                    <p style="font-size: 14px;"> <b>Email</b>: {{busines.business_email}}</p>  
+                                </h5>
+                                <p>{{ busines.business_description }}</p>
+                                <p><b> Business Owner</b>:{{ busines.user.user.username}}</p>
+                                
+                            </div> </b>
+                        </div>
+                        {% endfor %}
+                        </div>
+                    {% for post in posts %}
+                    <div class="p-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img class="rounded-circle account-img" width="100" height="100"
+                                        src="{{ user.profile.avatar.url }}">
+                                </div>
+                                <div class="col-md-9 mt-3">
+                                    <h6 class="text-primary">{{ post.user.user.username | title }}&nbsp;<b
+                                            class="text-muted">{{ post.title }}</b> </h6>
+                                    <p>{{ post.post }}</p>
+                                    <small><span class="text-muted">Posted
+                                            {{ post.date_posted | timesince }} ago...</span></small>
+                                    <a href="#!" class="float-right">Reply</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -61,26 +95,9 @@ font-family: 'Comic Sans MS', cursive, sans-serif;">
                     <a class="btn btn-sm btn-success mb-4" href="{% url 'neighbourhood' %}">Exit Page</a>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <h5 class="D-block mt-3 mb-2 text-white">Available Businesses</h5>
-                            <div class="row">
-                                {% for busines in business %}
-                                <div class="col-md-4">
-                                    <div class="card mb-4">
-                                        <div class="card-body">
-                                            <h6 class="card-title text-success">{{busines.business_name}}:
-                                                <span class="text-muted"
-                                                    style="font-size: 14px;">{{busines.business_email}}</span>
-                                            </h6>
-                                            <p class="card-text text-dark">{{ busines.description }}</p>
-                                            <p class="card-text">
-                                                Owner: <small class="text-success">
-                                                    {{ busines.user.user.username | title }}</small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div>
+                            
+                               
+                        
                         </div>
                     </div>
                     <hr>

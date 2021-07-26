@@ -66,7 +66,7 @@ class Business(models.Model):
     business_description = models.TextField()
 
     def __str__(self):
-        return f'{self.business_name}business'
+        return self.business_name
 
     def save_business(self):
         self.save()
@@ -81,7 +81,7 @@ class Business(models.Model):
     def find_business(cls,business_id):
         business = cls.objects.get(id = business_id)
         return business
-        
+
     def update_business(self):
         name = self.business_name
         self.business_name = name
