@@ -115,3 +115,16 @@ def create_post(request, hood_id):
     else:
         form = PostForm()
     return render(request, 'posty.html', {'form': form})
+
+@login_required(login_url='/accounts/login/')
+def search_business(request):
+    if 'business_name' in request.GET and request.GET["business_name"]:
+        search_term = request.GET.get("business_name")
+        found_businesses = Business.search_by_name(search_term)
+        message = f"{search_term}"
+        print(search_term)
+        context = {"found_businesses":found_businesses,"message":message}
+        return render(request, 'search.html',context)
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})
