@@ -2,6 +2,7 @@
 {% load bootstrap3 %}
 {% load static %}
 {% block content %}
+
 <body style=" background-image: url('https://cdn.pixabay.com/photo/2016/04/25/23/30/home-1353389__340.jpg');
 background-size: cover;
 background-repeat:  no-repeat;
@@ -10,16 +11,15 @@ font-family: 'Comic Sans MS', cursive, sans-serif;">
         <div class="row mt">
             <div class="col-md-6 mt-2">
                 <div class="card p-2">
-                    <h5 class="mt-2 mb-3 p-2"
-                        style="color: black; font-weight:bold;"><i
+                    <h5 class="mt-2 mb-3 p-2" style="color: black; font-weight:bold;"><i
                             class="fas fa-map-marker-alt green-text"></i> {{ neighbourhood.neighbourhood_name }}
                         {{neighbourhood.location}}</h5>
                     <div class="view overlay rounded z-depth-1-half p-1 bg-white">
-                        <img src="{{ neighbourhood.neighbourhood_photo.url }}" class="card-img-top" alt="{{ hood.name }}"
-                            height="300px">
-                            <a>
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
+                        <img src="{{ neighbourhood.neighbourhood_photo.url }}" class="card-img-top"
+                            alt="{{ hood.name }}" height="300px">
+                        <a>
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
                     </div>
                     <div class="card-body">
                         <h6 class="card-header text-center text-white">
@@ -41,8 +41,8 @@ font-family: 'Comic Sans MS', cursive, sans-serif;">
                         </h5>
                         <p class="card-text">
                             <span class="text-info">Police Department: 12341234</span> &nbsp;
-                             <br>
-                             <br>
+                            <br>
+                            <br>
                             <span class="text-info">Hospital Department: 56785643</span>
                         </p>
                     </div>
@@ -50,31 +50,27 @@ font-family: 'Comic Sans MS', cursive, sans-serif;">
                         {% for busines in business %}
                         <div class="col-md-4">
                             <div class="card-body">
-                                <h5><b>Business name</b>:{{busines.name}}
-                                    <p style="font-size: 14px;"> <b>Email</b>: {{busines.business_email}}</p>  
+                                <h5><b>Business name</b>:{{busines.business_name}}
+                                    <p style="font-size: 14px;"> <b>Email</b>: {{busines.business_email}}</p>
                                 </h5>
                                 <p>{{ busines.business_description }}</p>
                                 <p><b> Business Owner</b>:{{ busines.user.user.username}}</p>
-                                
+
                             </div> </b>
                         </div>
                         {% endfor %}
-                        </div>
-                    {% for post in posts %}
-                    <div class="p-2">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <img class="rounded-circle account-img" width="100" height="100"
-                                        src="{{ user.profile.avatar.url }}">
-                                </div>
-                                <div class="col-md-9 mt-3">
-                                    <h6 class="text-primary">{{ post.user.user.username | title }}&nbsp;<b
-                                            class="text-muted">{{ post.title }}</b> </h6>
-                                    <p>{{ post.post }}</p>
-                                    <small><span class="text-muted">Posted
-                                            {{ post.date_posted | timesince }} ago...</span></small>
-                                    <a href="#!" class="float-right">Reply</a>
+                    </div>
+                    <div class="row">
+                        {% for post in posts %}
+                        <div class="p-2">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-9 mt-3">
+                                        <h6>{{ post.user.username | title }}&nbsp;<b
+                                        >{{ post.title }}</b> </h6>
+                                        <p>{{ post.post }}</p>
+                                        <small>>Posted{{ post.date_posted | timesince }} ago...</span></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -90,14 +86,14 @@ font-family: 'Comic Sans MS', cursive, sans-serif;">
                 <div class="col-md-12">
                     <a href="" class="btn btn-sm btn-success mb-4 mr-4" data-toggle="modal" data-target="#Business">New
                         Business</a>
-                        
-                        <a class="btn btn-sm btn-success mb-4 mr-4" href="{% url 'post' neighbourhood.id %}">New Post</a>
+
+                    <a class="btn btn-sm btn-success mb-4 mr-4" href="{% url 'post' neighbourhood.id %}">New Post</a>
                     <a class="btn btn-sm btn-success mb-4" href="{% url 'neighbourhood' %}">Exit Page</a>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            
-                               
-                        
+
+
+
                         </div>
                     </div>
                     <hr>
