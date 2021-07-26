@@ -82,6 +82,11 @@ class Business(models.Model):
         business = cls.objects.get(id = business_id)
         return business
 
+    @classmethod
+    def search_by_name(cls,search_term):
+    	businesses = cls.objects.filter(business_name__icontains=search_term)
+    	return businesses
+
     def update_business(self):
         name = self.business_name
         self.business_name = name
