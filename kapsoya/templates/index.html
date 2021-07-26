@@ -1,39 +1,61 @@
 {%include 'base.html'%}
-
 {% block content %}
-<h1 style="text-align:center; font-size:40px;">Kapsoya Estate</h1>
-<div class="container-fluid">
-    <div class="col-md-12 text-center">
-        <a href="{% url 'new-hood' %}" class="btn btn-primary btn-md" style="text-align: center"> New Neighbourhood</a>
-    </div>
-    <section class="magazine-section">
-        {% for hood in all_hoods %}
-        <div class="col-lg-4">
-            <div
-                style="background-color: rgb(250, 246, 246);box-sizing: border-box; margin-top:2%;box-shadow: 0vh 0vh 1vh gainsboro;">
-                <div class="row" style="padding-top: 1%">
-                    <div class="col-md-12">
-                        <h4 style="font-weight:600;">Name: <a href="" class="text-right"style="text-decoration: none;">{{hood.neighbourhood_name}}</a></4>
-                    </div>
-                </div>
-                <div class="row" style="font-size:10pt;">
-                    <div class="col-md-6" style="padding-bottom: 2%;font-weight:600;"> Location: {{hood.neighbourhood_location}}
-                    </div>
-                </div>
-                <div class="">
-                    <a href=""><img src="{{hood.neighbourhood_photo.url}}" class="img-responsive"alt="{{image.neighbourhood_name}}" style="width:100%;width:100%"></a>
-                </div>
-                <div style="padding-top:1%;padding-bottom:1%">
-                    {% if request.user.profile.neighbourhood == hood %}
-                    <a class="btn btn-info btn-small" href="{% url 'single-hood' hood.id %}">View Hood</a>
-                    <a class="btn btn-warning" href="{% url 'leave-hood' hood.id %}">Leave Hood</a>
-                    {% elif not request.user.profile.neighbourhood %}
-                    <a class="btn btn-default" href="{% url 'joinhood' hood.id %}">Join Hood</a>
-                    {% endif %}
-                </div>
-            </div>
+
+<body>
+    <div class="container" id="background">
+        <div id="prog">
+            <h1
+                style="text-align:center; font-size:60px; font-family: 'Dancing Script', cursive; font-weight:bold; color: black;">
+                Kapsoya Estate</h1>
         </div>
-        {% endfor %}
-    </section>
-</div>
-{% endblock %}
+        <div id="opennote">
+            <h3 style="text-align:center; color: black;">Hello, my name is Natasha, a member of this vast community of
+                Kapsoya Estate. Find below various neighbourhoods in the area.</h3>
+            <p id="opennote"
+                style="text-align:center; font-family: 'Dancing Script', cursive; font-size: 50px; color: black;">
+                Welcome
+                to Kapsoya Estate.</p>
+        </div>
+        <div class="container-fluid">
+            <div class="col-md-12 text-center">
+                <a href="{% url 'new-hood' %}" class="btn btn-primary btn-md" style="text-align: center"> NEW
+                    NEIGHBOURHOOD
+                </a>
+            </div>
+            <section class="magazine-section">
+                {% for hood in all_hoods %}
+                <div class="col-lg-4">
+                    <div
+                        style="background-color: rgb(250, 246, 246);box-sizing: border-box; margin-top:2%;box-shadow: 0vh 0vh 1vh gainsboro;">
+                        <div class="row" style="padding-top: 1%">
+                            <div class="col-md-12">
+                                <h4 style="font-weight:600;">Name: <a class="text-right"
+                                        style="text-decoration: none;">{{hood.neighbourhood_name}}</a></h4>
+                            </div>
+                        </div>
+                        <div class="row" style="font-size:10pt;">
+                            <div class="col-md-6" style="padding-bottom: 2%;font-weight:600;"> Location:
+                                {{hood.neighbourhood_location}}
+                            </div>
+                        </div>
+                        <div class="">
+                            <a href=""><img src="{{hood.neighbourhood_photo.url}}" class="img-responsive"
+                                    alt="{{image.neighbourhood_name}}" style="width:100%;width:100%"></a>
+                        </div>
+                        <div style="padding-top:1%;padding-bottom:1%">
+                            {% if request.user.profile.neighbourhood == hood %}
+                            <a class="btn btn-success btn-small" href="{% url 'single-hood' hood.id %}">View
+                                Neighbourhood</a>
+                            <a class="btn btn-danger" href="{% url 'leave-hood' hood.id %}">Leave Neighbourhood</a>
+                            {% elif not request.user.profile.neighbourhood %}
+                            <a class="btn btn-primary" href="{% url 'joinhood' hood.id %}">Join Neighbourhood</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </section>
+        </div>
+        {% endblock %}
+    </div>
+</body>
